@@ -183,28 +183,49 @@ enum MatchResult {
     case draw
     case lose
 }
-var playerOneResult = MatchResult.draw
-func matchResult(fromPlayerOneShape: HandShape, fromPlayerTwoShape: HandShape) -> MatchResult {
-    switch playerOneResult {
-    case .win:
-        <#code#>
-    case .draw:
-        <#code#>
-    case .lose:
-        
+
+func matchResult(fromPlayerOneShape: HandShape, andPlayerTwoShape: HandShape) -> MatchResult {
+    var result = MatchResult.draw
+    switch fromPlayerOneShape {
+    case .rock:
+        if andPlayerTwoShape == .paper {
+            result = MatchResult.lose
+        } else if andPlayerTwoShape == .rock {
+            result = MatchResult.draw
+        } else {
+            result = MatchResult.win
+        }
+    case .paper:
+        if andPlayerTwoShape == .paper {
+            result = MatchResult.draw
+        } else if andPlayerTwoShape == .rock {
+            result = MatchResult.win
+        } else {
+            result = MatchResult.draw
+        }
+    case .scissors:
+        if andPlayerTwoShape == .paper {
+            MatchResult.win
+        } else if andPlayerTwoShape == .rock {
+            result = MatchResult.lose
+        } else {
+            result = MatchResult.draw
+        }
+        return result
     }
+    return result
 }
 // Uncomment the lines below to test your solution
 
-//let testCases: [(HandShape, HandShape, MatchResult)] = [
-//    (.rock, .paper, .lose),
-//    (.paper, .paper, .draw),
-//    (.scissors, .rock, .lose),
-//    (.rock, .scissors, .win)
-//]
-//
-//for testCase in testCases {
-//    let expectedOutput = testCase.2
-//    let output = matchResult(fromPlayerOneShape: testCase.0, andPlayerTwoShape: testCase.1)
-//    assert(output == expectedOutput, "Was execting \(expectedOutput), but got \(output) for inputs \(testCase.0) and \(testCase.1)")
-//}
+let testCases: [(HandShape, HandShape, MatchResult)] = [
+    (.rock, .paper, .lose),
+    (.paper, .paper, .draw),
+    (.scissors, .rock, .lose),
+    (.rock, .scissors, .win)
+]
+
+for testCase in testCases {
+    let expectedOutput = testCase.2
+    let output = matchResult(fromPlayerOneShape: testCase.0, andPlayerTwoShape: testCase.1)
+    assert(output == expectedOutput, "Was execting \(expectedOutput), but got \(output) for inputs \(testCase.0) and \(testCase.1)")
+}
