@@ -172,8 +172,28 @@ assert(Day.sunday.isWeekday() == false, "Sunday is not a weekday")
 //
 //Rock beats scissors, paper beats rock, scissor beats paper
 
-// Your code here
+enum HandShape {
+    case rock
+    case paper
+    case scissors
+}
 
+enum MatchResult {
+    case win
+    case draw
+    case lose
+}
+var playerOneResult = MatchResult.draw
+func matchResult(fromPlayerOneShape: HandShape, fromPlayerTwoShape: HandShape) -> MatchResult {
+    switch playerOneResult {
+    case .win:
+        <#code#>
+    case .draw:
+        <#code#>
+    case .lose:
+        
+    }
+}
 // Uncomment the lines below to test your solution
 
 //let testCases: [(HandShape, HandShape, MatchResult)] = [
